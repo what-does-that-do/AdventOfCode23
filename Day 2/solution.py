@@ -26,4 +26,5 @@ for line in f.readlines(): # for each game
         allRoundData.append(roundData)
     games.append(allRoundData)
 
+print(games)
 f.close()
