@@ -26,35 +26,29 @@ print(games)
 f.close()
 
 id = 1
-ids = []
-idTotal = 0
+powers = []
+totalPowers = 0
+
 for game in games:
+    # Smallest possible values, must be changed on first run.
     red = 0
     green = 0
     blue = 0
 
-    definetelyNot = False
-
-    for round in game: # count up total red,green,blue cubes of round
+    for round in game: # find highest no of each cube in round
         if "red" in round:
-            if round["red"] > red_cubes:
-                definetelyNot = True
+            if round["red"] > red:
+                red = round["red"]
         if "green" in round:
-            if round["green"] > green_cubes:
-                definetelyNot = True
+            if round["green"] > green:
+                green = round["green"]
         if "blue" in round:
-            if round["blue"] > blue_cubes:
-                definetelyNot = True
+            if round["blue"] > blue:
+                blue = round["blue"]
     
     print("GAME ID",id," - red",red,"green",green,"blue",blue)
-    print(game)
-    if definetelyNot:
-        print("[-] Does not work")
-    else:
-        print("[+] Works")
-        ids.append(id)
-        idTotal += id
-
+    power = red * green * blue # multiply for power
+    print("Power =",power)
     '''
     if red <= red_cubes and green <= green_cubes and blue <= blue_cubes: # possible no of cubes
         ids.append(id)
@@ -63,8 +57,9 @@ for game in games:
     else:
         print("[-] = This game does not fit.")
     '''
-
+    powers.append(power)
+    totalPowers += power # add to total powers
     id += 1
 
-print(ids)
-print("ANSWER:",idTotal)
+print(powers)
+print("ANSWER:",totalPowers)
