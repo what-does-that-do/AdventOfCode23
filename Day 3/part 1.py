@@ -33,16 +33,53 @@ line = 0
 numberIndexes = []
 for lineNos in numbers:
     indexes = []
+    i2 = []
     for n in lineNos:
         for i in range(len(lineNos[n])):
             indexes.append(n+i)
+        indexes.append(i2)
     numberIndexes.append(indexes)
 
 print(numberIndexes)
+partNumbers = []
 
-for i in range(len(numberIndexes)):
-    if i > 0:
-        for n in numberIndexes[i]:
+for line in range(len(numberIndexes)):
+    for fullNumber in numberIndexes[line]:
+        if not str(fullNumber).isdigit():
+            continue
+        
+        print("line=",line)
+        if line == 0:
+            start = line-1
+        else:
+            start = 0
+        
+        if line+1 >= len(numberIndexes)-1:
+            end = len(numberIndexes)
+        else:
+            end = line+1
+        
+        for l in range(start,end+1):
+            print("l=",l,"start=",start,"end=",end)
+            working = False
+            print("fullNumber",fullNumber)
+            for num in str(fullNumber):
+                print(fullNumber)
+                n = int(num)
+                if n in symbols[l]:
+                    print(n,"is in symbols.")
+                    working = True
+                elif n+1 in symbols[l]:
+                    print(n,"is next along in symbols!")
+                    working = True
+                elif n-1 in symbols[l]:
+                    print(n,"is one behind in symbols.")
+                    working = True
+                if working:
+                    partNumbers.append(fullNumber)
+                    break
+                
+print(partNumbers)
             
 
 '''
