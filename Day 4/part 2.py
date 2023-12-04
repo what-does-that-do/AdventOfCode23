@@ -1,4 +1,4 @@
-file = "Day 4/input.txt"
+file = "Day 4/test_case.txt"
 f = open(file,'r')
 
 numbers = []
@@ -12,22 +12,34 @@ for line in f.readlines():
 f.close()
 
 cardInfo = {}
-for set in numbers:
-    wins = 0
-    for win in set[0]:
-        if win == '':
-            continue
-        if win in set[1]:
-            wins += 1
-    if set in cardInfo:
-        instances = cardInfo[set]
-    for win in range(wins):
-        if cardInfo[int(set) + win] in cardInfo:
-            cardInfo[int(set) + win] = cardInfo[int(set) + win] + 1
-        else:
-            cardInfo[int(set) + win] = 1
+i = 0
+for Set in numbers:
+    if i in cardInfo:
+        instances = cardInfo[i]
+    else:
+        instances = 1
+    print(instances,"of scratchcard",i)
+    for x in range(instances):
+        wins = 0
+        for win in Set[0]:
+            if win == '':
+                continue
+            if win in Set[1]:
+                wins += 1
+        print(wins,"wins")
+
+
+        for win in range(wins):
+            if int(i) + win + 1 in cardInfo:
+                cardInfo[int(i) + win+1] = cardInfo[int(i) + win + 1] + 1
+            else:
+                cardInfo[int(i) + win + 1] = 1
+            print("Added 1 to",i+win+1)
+    i += 1
 
 totalCards = 0
 for c in cardInfo:
     if c < lines:
         totalCards += cardInfo[c]
+
+print("Total cards =",totalCards)

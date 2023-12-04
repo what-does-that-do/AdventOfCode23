@@ -10,12 +10,12 @@ for line in f.readlines():
 f.close()
 
 totalPoints = 0
-for set in numbers:
+for Set in numbers:
     points = 0
-    for win in set[0]:
+    for win in Set[0]:
         if win == '':
             continue
-        if win in set[1]:
+        if win in Set[1]:
             if points >= 1:
                 points *= 2
             else:
