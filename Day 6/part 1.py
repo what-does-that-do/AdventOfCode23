@@ -1,4 +1,4 @@
-file = "Day 6/test_case.txt"
+file = "Day 6/input.txt"
 f = open(file,'r')
 
 lines = f.readlines()
@@ -32,7 +32,7 @@ for race in range(len(times)):
         reachedDistance = timeLeft * holdButtonFor
 
         print(holdButtonFor,"m/s","got",reachedDistance)
-        if reachedDistance >= distance:
+        if reachedDistance > distance:
             possibilities += 1
             print("YES")
 
