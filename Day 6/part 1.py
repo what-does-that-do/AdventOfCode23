@@ -1,4 +1,6 @@
-file = "Day 6/input.txt"
+# for kerning p2, just remove spaces in input and run again!
+
+file = "Day 6/input2.txt"
 f = open(file,'r')
 
 lines = f.readlines()
@@ -31,12 +33,12 @@ for race in range(len(times)):
         timeLeft = time - holdButtonFor
         reachedDistance = timeLeft * holdButtonFor
 
-        print(holdButtonFor,"m/s","got",reachedDistance)
+        #print(holdButtonFor,"m/s","got",reachedDistance)
         if reachedDistance > distance:
             possibilities += 1
-            print("YES")
+            #print("YES")
 
-        print("Possibilities:",possibilities)
+        #print("Possibilities:",possibilities)
         holdButtonFor += 1
     multipliedPossibilities *= possibilities
 
