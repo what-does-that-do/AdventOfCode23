@@ -40,12 +40,12 @@ for lineNos in numbers:
 
 print(numberIndexes)
 
+'''
 for i in range(len(numberIndexes)):
     if i > 0:
         for n in numberIndexes[i]:
             
 
-'''
 for numbers in lineNumbers:
     indexes = []
     for index in numbers:
