@@ -19,6 +19,7 @@ print(cards)
 print(cardChars)
 
 cardStrengths = []
+strengths = {}
 
 for i in range(len(cards[0])):
     chars = cardChars[i]
@@ -31,10 +32,14 @@ for i in range(len(cards[0])):
             nHighest = 0
         if int(chars[c]) == highest:
             nHighest += 1
-    
-    strengths = {}
+    #roll out format below!
     if highest == 1:
-        strengths['High card'] = cards[0][i]
+        if "High card" in strengths:
+            s = strengths['High card'] 
+            s.append(cards[0][i])
+            strengths['High card'] = s
+        else:
+            strengths['High card'] = [cards[0][i]]
     elif highest == 2:
         if nHighest == 1:
             strengths['One pair'] = cards[0][i]
