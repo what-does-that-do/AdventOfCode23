@@ -1,3 +1,5 @@
+from multiprocessing import Pool, cpu_count
+
 file = "Day 8/input.txt"
 f = open(file, 'r')
 instructions = f.readlines()[0].replace('\n','')
@@ -25,38 +27,41 @@ for m in mapp:
 
 print(currentMaps)
 
-steps = 0
-inst = 0
-gotIt = False
-
-while not gotIt:
-    if inst < len(instructions):
-        task = instructions[inst]
-        steps += 1
-        if task == 'R':
-            for m in currentMaps:
-                m2 = mapp[m][1]
-                currentMaps[currentMaps.index(m)] = m2
-            inst += 1
-        elif task == 'L':
-            for m in currentMaps:
-                m2 = mapp[m][0]
-                currentMaps[currentMaps.index(m)] = m2
-            inst += 1
+def calculate():
+    steps = 0
+    inst = 0
+    gotIt = False
+    while not gotIt:
+        if inst < len(instructions):
+            task = instructions[inst]
+            steps += 1
+            if task == 'R':
+                for m in currentMaps:
+                    m2 = mapp[m][1]
+                    currentMaps[currentMaps.index(m)] = m2
+                inst += 1
+            elif task == 'L':
+                for m in currentMaps:
+                    m2 = mapp[m][0]
+                    currentMaps[currentMaps.index(m)] = m2
+                inst += 1
+            else:
+                pass
         else:
+            inst = 0
+        
+        a = 0
+        for m in currentMaps:
+            if m[-1] == 'Z':
+                a += 1
+        if a == 6:
+            gotIt = True
+            print("==> DONE!")
+        else:
+            #print(a,"maps have got a Z at the end. Iterations:",steps,end='\r')
             pass
-    else:
-        inst = 0
-    
-    a = 0
-    for m in currentMaps:
-        if m[-1] == 'Z':
-            a += 1
-    if a == 2:
-        gotIt = True
-        print("==> DONE!")
-    else:
-        print(a,"maps have got a Z at the end. Iterations:",steps,end='\r')
+    print("currentmaps",currentMaps)
+    print("Steps:",steps)
 
-print("currentmaps",currentMaps)
-print("Steps:",steps)
+calculate()
+
