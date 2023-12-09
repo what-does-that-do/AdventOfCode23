@@ -116,7 +116,7 @@ for kind in kinds:
                         elif rankOrder.index(strengths[kind][i-1][j]) < rankOrder.index(strengths[kind][i][j]):
                             print(strengths[kind][i-1][j],"is a higher rank than",strengths[kind][i][j])
                             
-                            newCardList.insert(0, strengths[kind][i-1])
+                            kindList.insert(0, strengths[kind][i-1])
                             kindList.insert(0, strengths[kind][i])
                             print("Added",strengths[kind][i-1],"after",strengths[kind][i])
                             break
